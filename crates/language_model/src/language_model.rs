@@ -487,6 +487,11 @@ pub trait LanguageModel: Send + Sync {
 
     /// Returns whether this model supports "burn mode";
     fn supports_burn_mode(&self) -> bool {
+        // All OpenAI models from custom providers support max mode
+        if self.provider_id().0 == "openai" {
+            return true;
+        }
+
         false
     }
 
