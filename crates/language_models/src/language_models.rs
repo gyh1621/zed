@@ -103,10 +103,10 @@ fn register_language_model_providers(
     client: Arc<Client>,
     cx: &mut Context<LanguageModelRegistry>,
 ) {
-    registry.register_provider(
-        CloudLanguageModelProvider::new(user_store.clone(), client.clone(), cx),
-        cx,
-    );
+    //registry.register_provider(
+    //    CloudLanguageModelProvider::new(user_store.clone(), client.clone(), cx),
+    //    cx,
+    //);
 
     registry.register_provider(
         AnthropicLanguageModelProvider::new(client.http_client(), cx),
@@ -116,10 +116,10 @@ fn register_language_model_providers(
         OpenAiLanguageModelProvider::new(client.http_client(), cx),
         cx,
     );
-    registry.register_provider(
-        OllamaLanguageModelProvider::new(client.http_client(), cx),
-        cx,
-    );
+    //registry.register_provider(
+    //    OllamaLanguageModelProvider::new(client.http_client(), cx),
+    //    cx,
+    //);
     registry.register_provider(
         LmStudioLanguageModelProvider::new(client.http_client(), cx),
         cx,
