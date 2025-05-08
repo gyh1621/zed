@@ -103,10 +103,10 @@ fn register_language_model_providers(
     client: Arc<Client>,
     cx: &mut Context<LanguageModelRegistry>,
 ) {
-    //registry.register_provider(
-    //    CloudLanguageModelProvider::new(user_store.clone(), client.clone(), cx),
-    //    cx,
-    //);
+    registry.register_provider(
+        CloudLanguageModelProvider::new(user_store.clone(), client.clone(), cx),
+        cx,
+    );
 
     registry.register_provider(
         AnthropicLanguageModelProvider::new(client.http_client(), cx),
@@ -149,5 +149,5 @@ fn register_language_model_providers(
         cx,
     );
     registry.register_provider(XAiLanguageModelProvider::new(client.http_client(), cx), cx);
-    registry.register_provider(CopilotChatLanguageModelProvider::new(cx), cx);
+    // registry.register_provider(CopilotChatLanguageModelProvider::new(cx), cx);
 }
