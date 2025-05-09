@@ -801,7 +801,8 @@ mod mac_os {
 
     fn locate_bundle() -> Result<PathBuf> {
         let cli_path = std::env::current_exe()?.canonicalize()?;
-        let mut app_path = cli_path.clone();
+        // let mut app_path = cli_path.clone();
+        let mut app_path = PathBuf::from("/Applications/Zed.app").canonicalize()?;
         while app_path.extension() != Some(OsStr::new("app")) {
             anyhow::ensure!(
                 app_path.pop(),
