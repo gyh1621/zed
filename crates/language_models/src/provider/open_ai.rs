@@ -191,6 +191,21 @@ impl LanguageModelProvider for OpenAiLanguageModelProvider {
         Some(self.create_language_model(open_ai::Model::default_fast()))
     }
 
+    fn recommended_models(&self, _cx: &App) -> Vec<Arc<dyn LanguageModel>> {
+        [open_ai::Model::O3]
+            .into_iter()
+            .map(|model| self.create_language_model(model))
+            .chain(self.provided_models(_cx).into_iter().filter(|model| {
+                model
+                    .name()
+                    .0
+                    .to_string()
+                    .to_lowercase()
+                    .starts_with("gemini")
+            }))
+            .collect()
+    }
+
     fn provided_models(&self, cx: &App) -> Vec<Arc<dyn LanguageModel>> {
         let mut models = BTreeMap::default();
 

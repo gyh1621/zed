@@ -491,6 +491,10 @@ pub trait LanguageModel: Send + Sync {
         if self.provider_id().0 == "openai" {
             return true;
         }
+        
+        if self.provider_id().0 == "anthropic" {
+            return true;
+        }
 
         false
     }
